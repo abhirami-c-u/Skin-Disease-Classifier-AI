@@ -1,6 +1,5 @@
 # Skin Disease Predictor
-
-This project is an AI-based skin disease classification system that leverages deep learning techniques to analyze and categorize images of skin lesions.
+ - This project is an AI-based skin disease predictor system that leverages deep learning techniques to analyze and categorize images of skin lesions.
 ---
 
 ## Features
