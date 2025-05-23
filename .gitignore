@@ -12,10 +12,9 @@ __pycache__/
 *.png
 *.webp
 *.jpeg
+
 skin_disease_data/
 
-# Jupyter notebooks
-.ipynb_checkpoints/
 
 # OS and IDE
 .DS_Store
