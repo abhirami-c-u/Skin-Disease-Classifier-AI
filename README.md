@@ -1,7 +1,6 @@
 # Skin Disease Predictor
 
-This project implements a deep learning model to classify skin lesion images into five categories using transfer learning with MobileNetV2. The dataset is based on the HAM10000 skin lesion dataset.
-
+This project is an AI-based skin disease classification system that leverages deep learning techniques to analyze and categorize images of skin lesions.
 ---
 
 ## Features
