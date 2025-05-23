@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DermaScan AI - Skin Disease Classifier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fcefe6, #f9c9b8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #4a3c31;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      padding: 1.2rem 1rem;
+    }
+
+    .container {
+      background: rgba(255 255 255 / 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 24px;
+      max-width: 800px;
+      width: 100%;
+      padding: 2rem 2.5rem 2.5rem;
+      box-shadow:
+        0 8px 32px rgba(255 170 140 / 0.25),
+        inset 0 0 40px rgba(255 170 140 / 0.15);
+      border: 1.5px solid rgba(255 140 90 / 0.35);
+      transition: box-shadow 0.3s ease;
+    }
+    .container:hover {
+      box-shadow:
+        0 12px 48px rgba(255 140 90 / 0.5),
+        inset 0 0 60px rgba(255 170 140 / 0.25);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0rem;
+      margin-bottom: 1.8rem;
+      user-select: none;
+      position: relative;
+    }
+
+    .skin-icon {
+      width: 40px;
+      height: 40px;
+      fill: url(#coralGradient);
+      filter: drop-shadow(0 3px 3px rgba(255, 140, 90, 0.5));
+      flex-shrink: 0;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        filter: drop-shadow(0 3px 3px rgba(255, 140, 90, 0.5));
+      }
+      50% {
+        filter: drop-shadow(0 6px 8px rgba(255, 110, 70, 0.8));
+      }
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      margin-bottom: 30px;
+      font-size: 2.4rem;
+      color: #a84e27;
+      text-shadow: 0 1px 2px rgba(255 140 90 / 0.5);
+      line-height: 1;
+      margin-right: 2ch;
+      
+    }
+
+    header p {
+      position: absolute;
+      bottom: -18px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #d9673c;
+      width: 100%;
+      text-align: center;
+      font-style: italic;
+      letter-spacing: 0.07em;
+      user-select: none;
+      margin-right: 2ch;
+    }
+
+    .container h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 1.8rem;
+      color: #b9582e;
+      text-align: center;
+      user-select: none;
+      text-shadow: 0 1px 2px rgba(255 140 90 / 0.4);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #8e5a3f;
+      user-select: none;
+      letter-spacing: 0.02em;
+    }
+
+    input[type="text"],
+    input[type="file"] {
+      padding: 12px 14px;
+      font-size: 1rem;
+      border-radius: 14px;
+      border: 2px solid transparent;
+      background: linear-gradient(145deg, #fff0e8, #f9d2bc);
+      color: #7a4e32;
+      font-weight: 600;
+      box-shadow:
+        inset 5px 5px 8px #f0c5a3,
+        inset -5px -5px 8px #ffffff;
+      transition: border-color 0.35s ease, box-shadow 0.35s ease;
+      font-family: 'Poppins', sans-serif;
+      cursor: text;
+    }
+    input[type="text"]:focus,
+    input[type="file"]:focus {
+      outline: none;
+      border-color: #e97c58;
+      box-shadow:
+        0 0 15px 3px rgba(233, 124, 88, 0.6),
+        inset 5px 5px 12px #f8aa7f,
+        inset -5px -5px 12px #fff4ea;
+      background: linear-gradient(145deg, #f9d2bc, #fff0e8);
+      color: #623a1c;
+    }
+
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: #9f6a40;
+      user-select: none;
+    }
+    .checkbox-wrapper input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #e97c58;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: box-shadow 0.25s ease;
+    }
+    .checkbox-wrapper input[type="checkbox"]:focus {
+      outline: none;
+      box-shadow: 0 0 8px 3px rgba(233, 124, 88, 0.7);
+    }
+    .checkbox-wrapper label {
+      cursor: pointer;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+
+    button {
+      padding: 14px 0;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #fff;
+      background: linear-gradient(45deg, #e96735, #b74100);
+      border: none;
+      border-radius: 32px;
+      box-shadow:
+        0 6px 20px rgba(233, 103, 53, 0.8),
+        0 0 15px rgba(255, 134, 77, 0.9);
+      cursor: pointer;
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+      user-select: none;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+    button:hover,
+    button:focus {
+      background: linear-gradient(45deg, #b74100, #e96735);
+      box-shadow:
+        0 10px 35px rgba(183, 65, 0, 1),
+        0 0 25px rgba(255, 134, 77, 1);
+      outline: none;
+      transform: scale(1.05);
+    }
+    button:active {
+      transform: scale(0.97);
+      box-shadow: 0 6px 12px rgba(183, 65, 0, 0.6);
+    }
+
+    footer {
+      margin-top: 2.2rem;
+      font-size: 0.85rem;
+      color: #a86943;
+      text-align: center;
+      user-select: none;
+      font-style: italic;
+      max-width: 420px;
+      text-shadow: 0 1px 2px rgba(255 200 160 / 0.35);
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem 1.5rem 2rem;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      .container h2 {
+        font-size: 1.5rem;
+      }
+      button {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
+
+  <svg style="display:none">
+    <defs>
+      <linearGradient id="coralGradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#e96735"/>
+        <stop offset="100%" stop-color="#b74100"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="main-title">
+    <header>
+      <svg class="skin-icon" aria-hidden="true" viewBox="0 0 64 64">
+        <path d="M32 2C20 2 12 14 12 26c0 14 20 36 20 36s20-22 20-36c0-12-8-24-20-24z" />
+      </svg>
+       <h1 id="main-title">SkinSure AI</h1>
+    <p>Your Skin Deserves Smart Care</p>
+  </header>
+
+  <main>
+    <section aria-label="Skin disease detection form">
+      <h2>Worried about a skin issue? Let's Analyze!</h2>
+
+      <form action="/predict" method="POST" enctype="multipart/form-data">
+        <label for="fullname">Your Name</label>
+        <input id="fullname" name="fullname" type="text" required aria-required="true" />
+
+        <label for="skinphoto">Affected Skin Area</label>
+        <input id="skinphoto" name="skinphoto" type="file" accept="image/*" required aria-required="true" />
+
+        <div class="checkbox-wrapper">
+          <input id="agreement" name="agreement" type="checkbox" required aria-required="true" />
+          <label for="agreement">I understand this is not a medical diagnosis</label>
+        </div>
+
+        <button type="submit" aria-label="Submit skin disease detection form">Analyze Skin Image</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 SkinSure AI. This tool is for educational purposes and is not a substitute for professional medical advice.
+  </footer>
+
+</body>
+</html>

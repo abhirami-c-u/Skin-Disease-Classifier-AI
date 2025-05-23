@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+
+# Model files
+*.h5
+*.keras
+
+# Data
+*.csv
+*.jpg
+*.png
+skin_disease_data/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# OS and IDE
+.DS_Store
+.vscode/
+.idea/
