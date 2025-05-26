@@ -1,53 +1,71 @@
 # Skin Disease Predictor
- - This project is an AI-based skin disease predictor system that leverages deep learning techniques to analyze and categorize images of skin lesions.
----
 
-## Features
-
-- Preprocessing and data augmentation for robust training
-- Handling of class imbalance with computed class weights
-- Transfer learning with MobileNetV2 pretrained on ImageNet
-- Fine-tuning of the top layers of the base model
-- Early stopping and model checkpointing to prevent overfitting
-- Model evaluation with detailed classification report
+This project is an AI-based Skin Disease Predictor that uses deep learning techniques to analyze and classify skin lesion images.
 
 ---
 
-## Dataset
+## 🔍 Features
 
-The HAM10000 dataset is used, and only a subset of 5 skin disease classes is considered:
-
-- **akiec** – Actinic keratoses and intraepithelial carcinoma
-- **bcc** – Basal cell carcinoma
-- **bkl** – Benign keratosis-like lesions
-- **mel** – Melanoma
-- **df** – Dermatofibroma
-
-- Images stored in two folders:  
-  `skin_disease_data/HAM10000_images_part_1`  
-  `skin_disease_data/HAM10000_images_part_2`
+- Preprocessing and data augmentation for robust training  
+- Class imbalance handled with computed class weights  
+- Transfer learning with MobileNetV2 pretrained on ImageNet  
+- Fine-tuning of top layers for improved performance  
+- Early stopping and model checkpointing to prevent overfitting  
+- Evaluation using accuracy and classification report  
 
 ---
 
-## Ignored Files (via `.gitignore`)
+## 🧠 Classes Used
 
-To keep the repository clean and avoid pushing unnecessary or large files, the following are excluded from version control:
+This version uses the **4 most frequent classes** from the HAM10000 dataset:
 
-- Python cache and compiled files:  
+- **nv** – Melanocytic nevi  
+- **mel** – Melanoma  
+- **bcc** – Basal cell carcinoma  
+- **bkl** – Benign keratosis-like lesions  
+
+---
+
+## 📦 Dataset
+
+The project uses the [**HAM10000 Dataset**](https://www.kaggle.com/datasets/kmader/skin-cancer-mnist-ham10000) (Kaggle).
+
+**Note**: Only a subset of 4 classes is used for training to improve performance and balance.
+
+- Download and extract the images and metadata.
+- Images are stored in:  
+  - `skin_disease_data/HAM10000_images_part_1`  
+  - `skin_disease_data/HAM10000_images_part_2`
+
+The `.csv` file `HAM10000_metadata.csv` contains the labels and metadata.
+
+---
+
+## 📁 Model File
+
+The trained Keras model (`last_skin_model.keras`) is **not included** in the GitHub repository due to file size.
+
+---
+
+## 🧾 Ignored Files (`.gitignore`)
+
+The following files and folders are excluded from version control to keep the repo clean:
+
+- Python cache files:  
   `__pycache__/`, `*.pyc`
 
 - Model files:  
   `*.h5`, `*.keras`
 
-- Dataset images and data files:  
+- Dataset images and CSVs:  
   `*.jpg`, `*.jpeg`, `*.png`, `*.webp`, `*.csv`  
-  Also the folder `skin_disease_data/` itself is ignored to avoid uploading large datasets
+  `skin_disease_data/` folder is ignored
 
-Make sure to keep a local copy of your dataset and models, as they are not pushed to GitHub.
+⚠️ Ensure you keep local copies of both the dataset and model.
 
 ---
 
-## Requirements
+## 💻 Requirements
 
 - Python 3.7+  
 - TensorFlow 2.x  
@@ -55,7 +73,7 @@ Make sure to keep a local copy of your dataset and models, as they are not pushe
 - pandas  
 - numpy
 
-Install dependencies via:
+Install dependencies with:
 
 ```bash
 pip install tensorflow scikit-learn pandas numpy
