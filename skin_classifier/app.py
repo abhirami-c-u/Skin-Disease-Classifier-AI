@@ -13,7 +13,7 @@ classes = ['nv', 'bkl', 'bcc', 'mel']
 UPLOAD_FOLDER = 'static/uploaded'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Disease descriptions (fill or expand as needed)
+# Disease descriptions 
 disease_descriptions = {
 
     'NV': 'Melanocytic nevi (NV) are common benign skin moles.',
@@ -22,7 +22,7 @@ disease_descriptions = {
     'BCC': 'Basal cell carcinoma is a type of skin cancer that begins in the basal cells.'
 }
 
-# Actions to be taken for each disease (fill or expand as needed)
+# Actions to be taken for each disease 
 disease_actions = {
     
     'NV': 'Generally harmless, but monitor for any changes and consult a dermatologist if needed.',
@@ -32,7 +32,7 @@ disease_actions = {
 }
 
 def get_risk_assessment(disease, confidence):
-    # Example logic — you can adjust thresholds & messages
+   
     if disease == 'MEL':
         if confidence > 70:
             return 'High Risk', 'Please consult a doctor immediately.'
