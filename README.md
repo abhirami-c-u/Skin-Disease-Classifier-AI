@@ -49,13 +49,7 @@ The trained Keras model is **not pushed** to GitHub (to keep the repo light and 
 
 
 ---
- ## Disclaimer
- 
-This project is for educational and internship demonstration purposes only.
 
-It is not a medical tool and should not be used for diagnosis or treatment. Always consult a licensed dermatologist for real medical concerns.
-
----
 ##  Ignored Files (`.gitignore`)
 
 The following files and folders are excluded from version control to keep the repo clean:
@@ -86,4 +80,16 @@ Install dependencies with:
 
 ```bash
 pip install tensorflow scikit-learn pandas numpy
+```
+
+---
+
+## ⚠️ Disclaimer
+
+This project is for educational and demonstration purposes only.  
+It is **not intended for medical use** or professional diagnosis.  
+Always consult a licensed dermatologist or healthcare provider for any concerns regarding skin conditions.
+
+The predictions made by this AI system may not be accurate and should not be used as a substitute for clinical judgment.
+
 
