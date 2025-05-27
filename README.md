@@ -1,6 +1,6 @@
 # Skin Disease Classifier - SkinSure AI
 
-This project is an AI-based Skin Disease Classifier that uses deep learning techniques to analyze and classify skin lesion images.
+This project is an AI-based skin disease classifier system that leverages deep learning techniques to analyze and predict the skin conditions.
 
 ---
 
