@@ -5,7 +5,7 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 
 app = Flask(__name__)
-model = load_model('last_skin_model.keras')
+model = load_model('skin_model.keras')
 
 classes = ['nv', 'bkl', 'bcc', 'mel']
   
