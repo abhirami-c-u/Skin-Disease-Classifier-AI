@@ -11,8 +11,7 @@ This project is an AI-based Skin Disease Classifier that uses deep learning tech
 - Transfer learning with MobileNetV2 pretrained on ImageNet  
 - Fine-tuning of top layers for improved performance  
 - Early stopping and model checkpointing to prevent overfitting  
-- Evaluation using accuracy and classification report  
-
+ 
 ---
 
 ##  Classes Used
