@@ -87,7 +87,7 @@ model.compile(optimizer=Adam(learning_rate=1e-5),
 model.fit(train_gen, validation_data=val_gen, epochs=10, class_weight=class_weights, callbacks=callbacks)
 
 # Save final model
-model.save('skin_classifier/last_skin_model.keras')
+model.save('skin_classifier/skin_model.keras')
 print("Final model saved!")
 
 # Evaluate
