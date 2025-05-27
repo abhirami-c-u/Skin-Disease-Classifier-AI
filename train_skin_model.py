@@ -97,5 +97,4 @@ y_pred = np.argmax(preds, axis=1)
 y_true = val_gen.classes
 labels = list(train_gen.class_indices.keys())
 
-print("\nClassification Report:")
-print(classification_report(y_true, y_pred, target_names=labels))
+
