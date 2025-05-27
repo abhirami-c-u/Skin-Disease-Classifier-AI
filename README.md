@@ -4,7 +4,7 @@ This project is an AI-based Skin Disease Classifier that uses deep learning tech
 
 ---
 
-## 🔍 Features
+##  Features
 
 - Preprocessing and data augmentation for robust training  
 - Class imbalance handled with computed class weights  
@@ -15,7 +15,7 @@ This project is an AI-based Skin Disease Classifier that uses deep learning tech
 
 ---
 
-## 🧠 Classes Used
+##  Classes Used
 
 This version uses the **4 most frequent classes** from the HAM10000 dataset:
 
@@ -26,7 +26,7 @@ This version uses the **4 most frequent classes** from the HAM10000 dataset:
 
 ---
 
-## 📦 Dataset
+##  Dataset
 
 The project uses the [**HAM10000 Dataset**](https://www.kaggle.com/datasets/kmader/skin-cancer-mnist-ham10000) (Kaggle).
 
@@ -41,13 +41,22 @@ The `.csv` file `HAM10000_metadata.csv` contains the labels and metadata.
 
 ---
 
-## 📁 Model File
+##  Model File
 
-The trained Keras model (`last_skin_model.keras`) is **not included** in the GitHub repository due to file size.
+The trained Keras model is **not pushed** to GitHub (to keep the repo light and clean).
+
+-  [Download skin_model.keras](https://drive.google.com/file/d/1iCenVIKIzp6iZLkUc-cKam2KCGJMAuNz/view?usp=drive_link)
+
 
 ---
+ ## Disclaimer
+ 
+This project is for educational and internship demonstration purposes only.
 
-## 🧾 Ignored Files (`.gitignore`)
+It is not a medical tool and should not be used for diagnosis or treatment. Always consult a licensed dermatologist for real medical concerns.
+
+---
+##  Ignored Files (`.gitignore`)
 
 The following files and folders are excluded from version control to keep the repo clean:
 
@@ -65,7 +74,7 @@ The following files and folders are excluded from version control to keep the re
 
 ---
 
-## 💻 Requirements
+##  Requirements
 
 - Python 3.7+  
 - TensorFlow 2.x  
@@ -77,3 +86,4 @@ Install dependencies with:
 
 ```bash
 pip install tensorflow scikit-learn pandas numpy
+
