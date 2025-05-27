@@ -32,22 +32,43 @@ disease_actions = {
 }
 
 def get_risk_assessment(disease, confidence):
-   
+    disease = disease.upper()
+
     if disease == 'MEL':
         if confidence > 70:
-            return 'High Risk', 'Please consult a doctor immediately.'
+            return 'High Risk', 'Melanoma is an aggressive skin cancer. Immediate medical attention is crucial.'
         elif confidence > 40:
-            return 'Moderate Risk', 'Consider scheduling a checkup soon.'
+            return 'Moderate Risk', 'Suspicious for melanoma. Schedule a dermatologist checkup soon.'
         else:
-            return 'Low Risk', 'Monitor your skin regularly.'
-    else:
-        # For other diseases, general risk messaging
+            return 'Low Risk', 'Possibly melanoma, but confidence is low. Keep monitoring and retest if needed.'
+
+    elif disease == 'NV':
         if confidence > 70:
-            return 'Likely', 'Follow recommended actions and consult a doctor.'
+            return 'Likely Benign', 'This appears to be a melanocytic nevus (mole), typically harmless.'
         elif confidence > 40:
-            return 'Possible', 'Be cautious and consider a doctor visit.'
+            return 'Uncertain', 'May be a mole, but monitor for asymmetry or color changes.'
         else:
-            return 'Unlikely', 'Keep monitoring and maintain skin care.'
+            return 'Unlikely', 'Low confidence. Consider retesting or seeking expert opinion.'
+
+    elif disease == 'BCC':
+        if confidence > 70:
+            return 'High Risk', 'Basal Cell Carcinoma detected. It grows slowly but requires professional treatment.'
+        elif confidence > 40:
+            return 'Moderate Risk', 'Potential BCC. Recommended to consult a skin specialist.'
+        else:
+            return 'Low Risk', 'May not be cancerous, but worth monitoring.'
+
+    elif disease == 'BKL':
+        if confidence > 70:
+            return 'Likely Benign', 'Benign keratosis-like lesion detected. Generally harmless.'
+        elif confidence > 40:
+            return 'Possible', 'Possibly benign, but watch for changes or irritation.'
+        else:
+            return 'Unlikely', 'Low probability. Retake image in better light or consult if unsure.'
+
+    else:
+        return 'Unknown', 'Disease type unrecognized. Risk cannot be determined.'
+
 
 @app.route('/')
 def index():
